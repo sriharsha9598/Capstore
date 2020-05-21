@@ -1,0 +1,114 @@
+<div id="i1" style="background-color: whitesmoke;">
+  <br />
+  <div class="row" style="margin-left: 20px;">
+    <div class="col-lg-2 wrapper">
+      <div class="row">
+        <div style="height: 50px;width: 255px; background-color: #384e78;">
+          <h4 class="text-center text-light" style="padding:10px; font-family: 'Segoe UI';"><i class="icon-filter"></i>
+            FILTERS</h4>
+        </div>
+        <div class="cd-filter-block" style="padding: 20px;">
+          <h5><b>Price</b></h5>
+
+          <ul class="cd-filter-content cd-filters list" style="margin-left: -20px;">
+            <li>
+              <input class="filter" data-filter="" ng-model="value" type="radio" name="radioButton" id="radio1"
+                (click)="sortByLowToHighPrice()">
+              <label class="radio-label" for="radio1">&nbsp;Low to High</label>
+            </li>
+
+            <li>
+              <input class="filter" data-filter=".radio2" type="radio" name="radioButton" id="radio2"
+                (click)="sortByHighToLowPrice()">
+              <label class="radio-label" for="radio2">&nbsp;High to Low</label>
+            </li>
+          </ul>
+          <hr style="margin:-15px 0 0 -20px; width: 260px;">
+        </div>
+        <div style="padding: 20px; margin-top: -20px;">
+          <h5><b>Featured</b></h5>
+          <ul class="cd-filter-content cd-filters list" style="margin-left: -20px;">
+            <li>
+              <input class="filter" data-filter="" ng-model="value" type="radio" name="radioButton" id="radio1"
+                (click)="showFeatured()">
+              <label class="radio-label" for="radio1">&nbsp;Only Featured Products</label>
+            </li>
+            <li>
+              <input class="filter" data-filter="" ng-model="value" type="radio" name="radioButton" id="radio1"
+                (click)="getBackAllFromFeatured()">
+              <label class="radio-label" for="radio1">&nbsp;All Products</label>
+            </li>
+          </ul>
+          <hr style="margin:0px 0 0 -20px; width: 260px;">
+        </div>
+
+        <div style="padding: 20px; margin-top: -20px;">
+          <h5><b>Price Range</b></h5>
+          <input #range type="range" min="0" max="{{maxPrice}}" (change)="priceRange(range.value,maxPrice)" value="0"
+            style="margin-left: 20px;">
+          <hr style="margin:0px 0 0 -20px; width: 260px;">
+        </div>
+        <div class="cd-filter-block" style="padding: 20px;">
+          <h5><b>Discount</b></h5>
+
+          <ul class="cd-filter-content cd-filters list" style="margin-left: -20px;">
+            <li>
+              <input class="filter" data-filter="" ng-model="value" type="radio" name="radioButton" id="radio1"
+                (click)="sortByLowToHighDiscount()">
+              <label class="radio-label" for="radio1">&nbsp;Low to High</label>
+            </li>
+
+            <li>
+              <input class="filter" data-filter=".radio2" type="radio" name="radioButton" id="radio2"
+                (click)="sortByHighToLowDiscount()">
+              <label class="radio-label" for="radio2">&nbsp;High to Low</label>
+            </li>
+          </ul>
+          <hr style="margin:-15px 0 0 -20px; width: 260px;">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-9" style="margin-left: 70px;">
+      <div class="row" *ngIf="product.length != 0">
+        <div class="col-lg-3" *ngFor="let obj of product|slice:limit1:limit2">
+          <div class="card">
+            <div class="image">
+              <img src="/assets/images/{{obj.productImage}}" (click)="gotoProduct(obj.productId)">
+              <div class="buttons">
+                <button *ngIf="(wishLists |wishList:obj.productId)" class="btn btn-dark activeButton"
+                  (click)="removeFromWishList(obj.productId)"><i class="fa fa-heart"></i></button>
+                <button *ngIf="!(wishLists |wishList:obj.productId)" class="btn btn-dark inActiveButton"
+                  (click)="addToWishList(obj.productId)"><i class="fa fa-heart"></i></button><br>
+                <button *ngIf="!(carts|carts:obj.productId)" class="btn btn-dark" (click)="addToCart(obj.productId)"><i class="fa fa-shopping-cart"></i></button>
+                <button *ngIf="(carts|carts:obj.productId)" class="btn text-warning" style="background-color: black;"><i class="fa fa-shopping-cart"></i></button>
+              </div>
+            </div>
+            <div class="price" (click)="gotoProduct(obj.productId)">
+              &#8377;&nbsp;{{obj.productPrice}} /-
+            </div>
+            <div class="info" (click)="gotoProduct(obj.productId)">
+              <h6>{{obj.productName}}</h6>
+              <h3>{{obj.productBrand}}</h3>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div *ngIf="product.length == 0">
+        <h1 class="text-center text-danger" style="padding-top: 250px;">No Products Found !</h1>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="row" style="text-align: center;">
+    <div class="one" style="margin-left: 700px; position: relative;">
+      <a class="btn" *ngIf="limit1 > 0 " (click)=new()>Previous</a>
+    </div>
+    <div class="two" style="margin-left: 800px; position: absolute; ">
+      <a class="btn" *ngIf="( limit2 < product.length)" (click)=old()>Next</a>
+    </div>
+  </div>
+  <br /><br />
+</div>
+

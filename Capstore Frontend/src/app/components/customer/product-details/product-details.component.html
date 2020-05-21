@@ -1,0 +1,137 @@
+<div style="background-color: whitesmoke; margin-right: -30px;">
+    <br>
+    <div class="offset-lg-1 offset-md-1 col-lg-10 col-md-10" *ngIf="prod">
+        <div class="text-success" style="position: relative;text-align: center;font-size: x-large;">&nbsp;{{statusMsg}}
+        </div><br>
+        <div class="profileCard">
+            <div class="left">
+
+                <div style="background-color:white;border-right: 3px solid #384e78;border-radius: 10px;height: 475px;">
+                    <!-- <img src="/assets/images/featured.jpg" style="height: 25px;width: 25px;position: relative;top: 100px;left: 100px"> -->
+                    <img src="/assets/images/{{prod.productImage}}">
+                </div>
+                <br>
+                <h3>{{prod.productBrand}}</h3>
+                <h5>{{prod.productName}}</h5>
+            </div>
+            <div class="right text-center">
+                <div class="right-top">
+                    <div class="row" style="border-bottom: 1px solid #353c4e;">
+                        <div class="col-lg-1 col-md-1" style="font-size: larger;font-weight: bold;"><i
+                                class="fa fa-eye">&nbsp;{{prod.noOfViews}}</i>
+                        </div>
+                        <div class="col-lg-4 col-md-4 text-right">
+                            <div class="rating">
+                                <input type="radio" [(ngModel)]="star" value="5"><label></label>
+                                <input type="radio" [(ngModel)]="star" value="4"><label></label>
+                                <input type="radio" [(ngModel)]="star" value="3"><label></label>
+                                <input type="radio" [(ngModel)]="star" value="2"><label></label>
+                                <input type="radio" [(ngModel)]="star" value="1"><label></label>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-7 text-right">
+                            <h4 style="text-align: right;">Availabilty : <span class="text-success"
+                                    style="text-transform: none;"
+                                    *ngIf="prod.noOfProducts>=10">{{availability}}</span><span class="text-danger"
+                                    style="text-transform: none;" *ngIf="10>prod.noOfProducts">{{availability}}</span>
+                            </h4>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="summary btn col-lg-7 col-md-7" id="desc" (click)="showFalse()"
+                            style="border-bottom: 3px solid #353c4e;">Product
+                            Description</div>
+                        <div class="summary btn col-lg-5 col-md-5" id="reviews" (click)="showTrue()">Reviews</div>
+                    </div>
+                    <div class="text-left info" style="font-family: Trebuchet MS;" *ngIf="!show">
+                        <p class="text" *ngFor="let obj of productDesc;let i=index;">
+                            <span *ngIf="obj.startsWith('~')"
+                                style="font-weight: bolder;font-size: large;">{{obj}}</span>
+                            <span *ngIf="!obj.startsWith('~')" style="font-size: large;">{{obj}}</span>
+                        </p>
+                    </div>
+                    <div class="text-left info" style="font-family: Trebuchet MS;" *ngIf="show">
+                        <table class="table table-hover table-stripped">
+                            <tr *ngFor="let obj of feedbacks;">
+                                <td>{{obj.customer.username}}&nbsp;({{obj.rating}}-star)
+                                    <br>
+                                    {{obj.feedbackSubject}}<br>
+                                    {{obj.feedbackMessage}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                </div>
+                <div style="height: 75px;">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5" style="justify-content: center;">
+                            <h4>Quantity :
+                                <input type="number" style="width: 75px;" name="quantity" [(ngModel)]="quantity"
+                                    required>
+                            </h4>
+                        </div>
+                        <div class="col-lg-3 col-md-3 text-center">
+                            <h4 *ngIf="prod.discount>0" class="text-center" style="margin-bottom: 0px;">
+                                &#8377;&nbsp;<span><s>{{prod.productPrice}}</s></span></h4>
+                            <h6 *ngIf="prod.discount>0" style="color: crimson;font-weight: bold;">SAVE
+                                {{prod.discount}}% off</h6>
+                        </div>
+                        <div class="col-lg-4 col-md-4 text-left" style="justify-content: left;">
+                            <h2 style="color: crimson;font-weight: bold;">&#8377;&nbsp;{{discountedPrice}} /-</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 text-center text-danger"
+                            style="font-size: large; margin-top: -10px;">
+                            <span *ngIf="quantity>prod.noOfProducts">Sorry, Only {{prod.noOfProducts}} products are
+                                available now !!</span>
+                            <span *ngIf="1>quantity">Please enter a valid quantity !!</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 text-center btn-secondary" *ngIf="!wishlisted"
+                        (click)="addToWishList(prod.productId)"
+                        style="padding-top: 7px;padding-bottom: 7px;font-size: x-large;cursor: pointer;"><i
+                            class="fa fa-heart" style="font-size: normal;"></i>&nbsp;Add to Wishlist</div>
+                    <div class="col-lg-4 col-md-4 text-center btn-dark" *ngIf="wishlisted"
+                        (click)="removeFromWishList(prod.productId)"
+                        style="padding-top: 7px;padding-bottom: 7px;font-size: x-large;cursor: pointer; color: crimson;">
+                        <i class="fa fa-heart" style="font-size: normal; "></i>&nbsp;Wishlisted</div>
+                    <div class="col-lg-4 col-md-4 text-center btn-dark" (click)="addToCart()" *ngIf="!inCart"
+                        style="padding-top: 7px;padding-bottom: 7px;font-size: x-large;cursor: pointer;"><i
+                            class="fa fa-shopping-cart" style="font-size: normal;"></i>&nbsp;Add to Cart</div>
+                    <div class="col-lg-4 col-md-4 text-center text-warning" *ngIf="inCart"
+                        style="padding-top: 7px;padding-bottom: 7px;font-size: x-large;cursor: pointer;background-color: black;"><i
+                            class="fa fa-shopping-cart" style="font-size: normal;"></i>&nbsp;In Cart</div>
+
+                    <div class="col-lg-4 col-md-4 text-center btn-success" (click)="buyNow()"
+                        style="padding-top: 7px;padding-bottom: 7px;font-size: x-large;cursor: pointer;">Buy Now</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="offset-lg-1 col-lg-10">
+        <h2 class="text-left">Similar Products</h2>
+        <div class="row">
+            <div class="col-lg-3" *ngFor="let obj of similarProd;">
+                <div class="card" (click)="gotoProduct(obj.productId)">
+                    <div class="image">
+                        <img src="/assets/images/{{obj.productImage}}">
+                    </div>
+                    <div class="price">
+                        &#8377;&nbsp;{{obj.productPrice}} /-
+                    </div>
+                    <div class="info1">
+                        <h6>{{obj.productName}}</h6>
+                        <h3>{{obj.productBrand}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

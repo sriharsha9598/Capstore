@@ -1,0 +1,45 @@
+<br>
+<br>
+<div class="content">
+    <div class="offset-lg-1 col-lg-11">
+        <div class="row" style="padding: 25px;">
+                <div class="col-lg-9">
+                    <h1 style="color: #34465D;">My Wishlist</h1>
+                </div>
+                <div class="col-lg-3" style="padding-top: 5px;">
+                    <button class="btn btn-outline-danger" (click)="deleteAll()"><i class="fa fa-trash"></i>&nbsp;&nbsp;DELETE ALL</button>
+                </div>
+            </div>
+            <div class="text-success text-center">&nbsp;<h4>{{statusMsg}}</h4></div>
+            <table class="table table-stripped table-responsive table-hover text-center">
+            <col width="12%">
+            <col width="60%">
+            <col width="13%">
+            <col width="13%">
+                  
+            <tr style="cursor: default;background-color: lightgray;">
+                <th></th>
+                <th>Product</th>
+                <th colspan="2">Action</th>
+            </tr>
+            <tr *ngFor="let pr of products;" >
+                <td (click)="getProduct(pr.productId)"><img src="/assets/images/{{pr.productImage}}" style="max-width:50px; max-height: 75px;"></td>
+                <td (click)="getProduct(pr.productId)" style="vertical-align: middle;justify-content: left;text-align: left;">
+                    <h4>{{pr.productBrand}}&nbsp;-&nbsp;{{pr.productName}}</h4>
+                    <h4 style="color: crimson;font-weight: bold;">&#8377;&nbsp;{{pr.productPrice}}</h4>
+                </td>
+                <td style="vertical-align: middle;"><button (click)="addToCart(pr.productId)" class="btn btn-success"><i
+                            class="fa fa-shopping-cart"></i> Add to Cart</button></td>
+                <td style="vertical-align: middle;"><button (click)="removeFromWishlist(pr.productId)" class="btn btn-danger"><i
+                            class="fa fa-remove"></i> Remove</button></td>
+            </tr>
+    
+            <tr>
+                <td *ngIf="!products || products.length==0" colspan="4" >
+                    <h2>Your Wish is Empty!!</h2>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+</div>

@@ -1,0 +1,405 @@
+<br><br><br>
+<div class="row col-lg-12">
+    <div class="offset-lg-2 offset-md-2 col-lg-9 col-md-9 text-center"
+        style="justify-content: center;overflow-y: hidden;">
+        <table class="table table-stripped table-responsive table-hover text-center" *ngIf="productId!=0"
+            >
+            <col width="15%">
+            <col width="60%">
+            <col width="10%">
+            <col width="15%">
+            <tr>
+                <th></th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+            <tr>
+                <td><img src="/assets/images/{{pr.productImage}}" style="max-width:50px; max-height: 75px;"></td>
+                <td style="vertical-align: middle;font-weight: bold;font-size: large;">
+                    {{pr.productBrand}}&nbsp;-&nbsp;{{pr.productName}}</td>
+                <td style="vertical-align: middle;font-weight: bold;color: #353c4e;">{{quantity}}</td>
+                <td style="vertical-align: middle;color: #353c4e;font-size: large;font-weight: bold;">
+                    {{pr.productPrice}}</td>
+            </tr>
+            
+        </table>
+        <table class="table table-stripped table-responsive table-hover text-center" *ngIf="productId==0"
+            >
+            <col width="15%">
+            <col width="60%">
+            <col width="10%">
+            <col width="15%">
+            <tr>
+                <th></th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+            <tr *ngFor="let pr of productsList;">
+                <td><img src="/assets/images/{{pr.productImage}}" style="max-width:50px; max-height: 75px;"></td>
+                <td style="vertical-align: middle;font-weight: bold;font-size: large;">
+                    {{pr.productBrand}}&nbsp;-&nbsp;{{pr.productName}}</td>
+                <td style="vertical-align: middle;font-weight: bold;color: #353c4e;">{{pr.quantity}}</td>
+                <td style="vertical-align: middle;color: #353c4e;font-size: large;font-weight: bold;">
+                    {{pr.productPrice}}</td>
+            </tr>
+ 
+        </table>
+
+      
+    </div>
+    <div class="col-lg-12 text-center"><hr style= "width : 70% ; border :1px solid #353c4e"></div>
+
+
+ 
+
+    <div  *ngIf="!appliedCoupon" class="row col-lg-12 text-center" style="font-size: medium;font-weight: normal;justify-content: center;">(After
+        applying available discounts) </div>
+    <div class="row col-lg-12 text-center" *ngIf="!appliedCoupon"
+        style="font-weight: bold;font-size: xx-large;justify-content: center;padding-bottom: 25px;margin-top: 0px;">
+        Bill Amount = <span style="color: crimson;">&nbsp;&#8377;&nbsp;{{orderAmount}} /-&nbsp;</span>
+    </div>
+    <div class="row col-lg-12 text-center text-success" style="justify-content: center;">&nbsp;<h3>{{statusMsg}}</h3>
+    </div>
+    <br>
+    <div class="row col-lg-12">
+        <div class="offset-lg-2 col-lg-2 text-center font-weight-bold">
+            <h5 style="font-family: 'Segoe UI'; font-weight: 600">Choose Address
+                <span class="text-danger"> * </span>
+            </h5>
+        </div>
+        <div class="col-lg-4">
+            <select class="input inpBox text-center" [(ngModel)]="selectedAddress" id="address" style="outline: none;">
+                <option *ngFor="let addr of addressList;" style="color: rgb(20,20,20);cursor: pointer;"
+                    [value]="addr.addressId">
+                    {{addr.addressLineOne}}, {{addr.addressLineTwo}},<br> {{addr.district}}, {{addr.state}}
+                </option>
+                <option style="color: rgb(20,20,20);" *ngIf="!addressList || addressList.length==0" disabled>No
+                    Addresses in your account..</option>
+            </select>
+            <div *ngIf="selectedAddress==-1" class="text-danger text-center" style="padding:20px;">
+                <h5>{{errorMessage}}</h5>
+            </div>
+        </div>
+        <div class="col-lg-2 text-left">
+
+            <a (click)="newAddress()"><u>Add New Address?</u></a>
+        </div>
+
+    </div>
+
+    <br>
+    <div class="offset-lg-2 col-lg-8 text-center"
+        style="justify-content: center;border: 1px solid #353c4e;margin-top: 20px;margin-bottom: 20px;"
+        *ngIf="showAddressForm && selectedAddress==-1">
+        <br><br>
+        <form [formGroup]="addressForm" (ngSubmit)="addAddress()">
+            <div class="form-group row">
+                <label for="addressLineOne" class="offset-lg-1 col-lg-2 text-left font-weight-bold">
+                    <h5 style="font-family: 'Segoe UI'; font-weight: 600;">Line1
+                        <span class="text-danger"> * </span>
+                    </h5>
+                </label>
+                <div class="col-lg-1 text-center">
+                    :
+                </div>
+                <div class="col-lg-6 text-left">
+                    <input type="text" class="form-control" style="width: 100%;" placeholder="Your addressLineOne"
+                        formControlName="addressLineOne" required />
+                    <div *ngIf="submitted && addressForm.controls.addressLineOne.errors" class="text-danger">
+                        <div *ngIf="addressForm.controls.addressLineOne.errors.required">
+                            Your addressLineOne is required..!!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="addressLineTwo" class="offset-lg-1 col-lg-2 text-left font-weight-bold">
+                    <h5 style="font-family: 'Segoe UI'; font-weight: 600">Line2
+                        <span class="text-danger"> * </span>
+                    </h5>
+                </label>
+                <div class="col-lg-1 text-center">
+                    :
+                </div>
+                <div class="col-lg-6 text-left">
+                    <input type="text" class="form-control" placeholder="Your addressLineTwo" style="width: 100%;"
+                        formControlName="addressLineTwo" required />
+                    <div *ngIf="submitted && addressForm.controls.addressLineTwo.errors" class="text-danger">
+                        <div *ngIf="addressForm.controls.addressLineTwo.errors.required">
+                            Your addressLineTwo is required..!!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="district" class="offset-lg-1 col-lg-2 text-left font-weight-bold">
+                    <h5 style="font-family: 'Segoe UI'; font-weight: 600">District
+                        <span class="text-danger"> * </span>
+                    </h5>
+                </label>
+                <div class="col-lg-1 text-center">
+                    :
+                </div>
+                <div class="col-lg-6 text-left">
+                    <input type="text" class="form-control" placeholder="Your district" formControlName="district" style="width: 100%;"
+                        required />
+                    <div *ngIf="submitted && addressForm.controls.district.errors" class="text-danger">
+                        <div *ngIf="addressForm.controls.district.errors.required">
+                            Your district is required..!!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="state" class="offset-lg-1 col-lg-2 text-left font-weight-bold">
+                    <h5 style="font-family: 'Segoe UI'; font-weight: 600">State
+                        <span class="text-danger"> * </span>
+                    </h5>
+                </label>
+                <div class="col-lg-1 text-center">
+                    :
+                </div>
+                <div class="col-lg-6 text-left">
+                    <input type="text" class="form-control" placeholder="Your state" formControlName="state" required style="width: 100%;"/>
+                    <div *ngIf="submitted && addressForm.controls.state.errors" class="text-danger">
+                        <div *ngIf="addressForm.controls.state.errors.required">
+                            Your state is required..!!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="landmark" class="offset-lg-1 col-lg-2 text-left font-weight-bold">
+                    <h5 style="font-family: 'Segoe UI'; font-weight: 600">Landmark
+                        <span class="text-danger"> * </span>
+                    </h5>
+                </label>
+                <div class="col-lg-1 text-center">
+                    :
+                </div>
+                <div class="col-lg-6 text-left">
+                    <input type="text" class="form-control" placeholder="Your landmark" formControlName="landmark" style="width: 100%;"
+                        required />
+                    <div *ngIf="submitted && addressForm.controls.landmark.errors" class="text-danger">
+                        <div *ngIf="addressForm.controls.landmark.errors.required">
+                            Your landmark is required..!!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary" type="submit" (click)="addAddress()">ADD</button>
+                <br>
+                <br>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="row col-lg-12">
+        <div class="offset-lg-2 col-lg-2 text-center font-weight-bold">
+            <h5 style="font-family: 'Segoe UI'; font-weight: 600">Coupon Code
+            </h5>
+        </div>
+        <div class="col-lg-4">
+            <select class="input inpBox text-center" [(ngModel)]="selectedCoupon" id="address" style="outline: none;">
+                <option *ngFor="let coupon of coupons" style="color: rgb(20,20,20);cursor: pointer;"
+                    [value]="coupon.couponCode">
+                    {{coupon.couponCode}}
+                </option>
+                <option style="color: rgb(20,20,20);" *ngIf="!coupons || coupons.length==0" disabled>No
+                    Coupons for this order..</option>
+            </select>
+        </div>
+        <div class="col-lg-2">
+            <button class="btn btn-outline-primary" (click)="pickCoupon()">Apply</button>
+        </div>
+    </div>
+    <br>
+    <div class="col-lg-9 text-right" style="float: right;" *ngIf="appliedCoupon">
+        <div style="font-weight: bold;font-size: larger;padding: 40px;">
+            Original Bill Amount = &nbsp;&#8377;&nbsp;{{orderAmount}} &nbsp;<br>
+            Coupon Applied = - &nbsp;&#8377;&nbsp; {{couponAmount}} &nbsp;&nbsp;<br><br>
+            Amount to be Paid = &nbsp;
+            <span style="color: crimson;border-top: 1px solid #353c4e;padding: 10px;font-size: xx-large;">&#8377;&nbsp;{{finalPrice}}
+                /-&nbsp;</span></div>
+    </div>
+    <br>
+    <div class="row col-lg-12 text-center" style="justify-content: center;padding-top: 50px;">
+        <button class="btn btn-success" (click)="placeOrder()" *ngIf = "!insufficientBalance">PLACE ORDER & PAY</button>
+        <div class="text-danger text-center" *ngIf = "insufficientBalance"><h4>Sorry! You do not have enough Balance in your wallet to buy these.....<br><span style="color: black;">Please add money to continue....</span> </h4></div>
+    </div>
+    <div class="row col-lg-12 text-center" style="justify-content: center;" *ngIf = "insufficientBalance">
+        <div class="m-5">
+            <div>
+                <button class="btn btn-success" data-toggle="modal" data-target="#Money">Add Money</button>
+             </div>
+        </div>
+        
+        
+        
+        <div class="modal" id="Money">
+            <div class="modal-dialog">
+                <div class="modal-content">
+        
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Update your Balance</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+        
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form [formGroup]="depositeForm" class="ml-5" action="javascript:void(0);" autocomplete="off">
+                            <div class="form-group d-flex">
+                                <label  class="mr-5">Add Through</label>
+                                <select class="form-control" formControlName="addThrough">
+                                    <option selected></option>
+                                    <option>Credit Card</option>
+                                    <option>Debit card</option>
+                                </select>
+                                <label  class="text-danger" *ngIf="depositeForm.get('addThrough').touched && depositeForm.get('addThrough').errors?.required">
+                                    Required Field
+                                </label>
+                            </div>
+                            <div class="form-group d-flex">
+                                <label  class="mr-5">Add Amount</label>
+                                <input class="form-control" min="0" value={{balance}} oninput="validity.valid||(value='');" formControlName="amount">
+                                <label class="text-danger"
+                                *ngIf="depositeForm.get('amount').touched && depositeForm.get('amount').errors?.required">
+                                Required Field
+                                </label>
+                                <label class="text-danger"
+                                    *ngIf="depositeForm.get('amount').touched && depositeForm.get('amount').errors?.pattern">
+                                    Only Numbers are Allowed
+                                </label>
+                                <label class="text-danger"
+                                    *ngIf="depositeForm.get('amount').touched && depositeForm.get('amount').errors?.min">
+                                    Min. Amount Required as 1
+                                </label>
+                    
+                            </div>
+                            <div class="form-group mb-4">
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#addMoney" data-dismiss="modal" [disabled]="!depositeForm.valid" >Proceed</button>
+                            </div>
+                    
+                        </form>
+                    </div>
+        
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="close()">Close</button>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="modal" id="addMoney">
+            <div class="modal-dialog">
+                <div class="modal-content">
+        
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Enter You Details...</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+        
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form [formGroup]="cardForm" class="ml-5" action="javascript:void(0);" autocomplete="off">
+                            <div class="form-group">
+                                <label class="mr-4">Card Number</label><br>
+                                <div class="d-flex">
+                                    <input class="form-control" formControlName = "CardNumber">
+                                <i class="fa fa-credit-card-alt fa-2x ml-3" aria-hidden="true"></i>
+                                </div>
+                                <label class="text-danger" 
+                                *ngIf = "cardForm.get('CardNumber').touched && cardForm.get('CardNumber').errors?.required">
+                                    Required Field
+                                </label>
+                                <label class="text-danger" 
+                                *ngIf = "cardForm.get('CardNumber').touched && cardForm.get('CardNumber').errors?.pattern">
+                                    Card No. shold be 16 Digits
+                                </label>
+                            </div>
+                            <div class="d-flex">
+                                <div class="form-group">
+                                    <label class="mr-4">Expiry</label><br>
+                                    <div class="d-flex">
+                                        <input class="form-control" formControlName="Month" id="expiry_month" maxlength="2">
+                                        <span class="mx-1">/</span>
+                                        <input class="form-control" id="expiry_year" formControlName="Year" maxlength="2">
+                                        <label class="text-danger" 
+                                *ngIf = "cardForm.get('Month').touched && cardForm.get('Month').errors?.required">
+                                    Required Field
+                                </label>
+                                <label class="text-danger" 
+                                *ngIf = "cardForm.get('Year').touched && cardForm.get('Year').errors?.required">
+                                    Required Field
+                                </label>
+                                    </div>
+                                </div>
+                                <div class="form-group ml-5">
+                                    <label>CVV</label><br>
+                                    <input class="form-control" id="cvv" formControlName= "Cvv" maxlength="3">
+                                    <label class="text-danger" 
+                                *ngIf = "cardForm.get('Cvv').touched && cardForm.get('Cvv').errors?.required">
+                                    Required Field
+                                </label>
+                                <label class="text-danger" 
+                                *ngIf = "cardForm.get('Cvv').touched && cardForm.get('Cvv').errors?.pattern">
+                                    Cvv should be 3 digit
+                                </label>
+                                </div>
+                                <img src="/assets/images/cvv.png" alt="cvv-image" id="cvv_image" class="ml-3">
+                            </div>
+                            <div class="from-group">
+                                <label >Card Holder's Name</label><br>
+                                <div class="d-flex">
+                                    <input class="form-control" formControlName= "HolderName">
+                                <i class="fa fa-user-secret fa-2x ml-3" aria-hidden="true"></i>
+                                </div>
+                                <label class="text-danger" 
+                                *ngIf = "cardForm.get('HolderName').touched && cardForm.get('HolderName').errors?.required">
+                                    Required Field
+                                </label>
+                                <label class="text-danger" 
+                                *ngIf = "cardForm.get('HolderName').touched && cardForm.get('HolderName').errors?.pattern">
+                                    Only characters allowed
+                                </label>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label >PIN</label><br>
+                                <div class="d-flex">
+                                    <input type="password" id="pin" class="form-control" formControlName= "Pin">
+                                <i class="fa fa-eye-slash fa-2x ml-3" aria-hidden="true"></i>
+                                </div>
+                                <label class="text-danger" 
+                                *ngIf = "cardForm.get('Pin').touched && cardForm.get('Pin').errors?.required">
+                                    Required Field
+                                </label>
+                                <label class="text-danger" 
+                                *ngIf = "cardForm.get('Pin').touched && cardForm.get('Pin').errors?.pattern">
+                                    Pin shold be 4 Digits
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <button  data-dismiss="modal" class="btn btn-primary" (click)="addMoneyInWallet()">Proceed</button>
+                            </div>
+        
+                        </form>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="close()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

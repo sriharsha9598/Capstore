@@ -1,0 +1,151 @@
+h2{
+    cursor: pointer;
+    font-family: Futura;
+    color: white;
+  }
+  
+  .dropdown-item,.dropdown-toggle
+  {
+    cursor: pointer;
+  }
+  
+  .dropdown-menu :hover
+  {
+    background-color: #ffc107;
+  }
+  
+    .card{
+      width: 241.5px;
+      height: 400px;
+      background-color: #384e78;
+      background-size: cover;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-left: 10px;
+      transition: 0.7s;
+      cursor: pointer;
+      font-family: 'Segoe UI';
+      margin: 10px;
+      transform: scale(0.95);
+  }
+  
+  .card:hover{
+    transform: scale(1);
+    box-shadow: 5px 20px 30px rgba(0,0,0,0.2);
+  }
+  .card .image{
+      border-radius: 10px;
+      margin: 2px;
+      width: 235px;
+      background-color: white;
+      height: 300px;
+      text-align: center;
+  }
+  
+  .card img{
+      top: 0;
+      padding: 10px;
+      max-width: 230px;
+      max-height: 300px;
+  }
+  
+  .card .buttons{
+      left: 142px;
+      transition: 0.5s;
+      position: relative;
+      top: -200px;
+  }
+  
+  .card .activeButton{
+      margin-bottom: 2px;
+      color: crimson;
+  }
+  
+  /* .card .activeButton:hover{
+      color: white;
+  } */
+  
+  .card .inActiveButton{
+    margin-bottom: 2px;
+    color: white;
+  }
+  
+  .card .inActiveButton:hover{
+    color: crimson;
+  }
+  
+  .card:hover .buttons{
+      left: 102px;
+      transition: 0.5s;
+  }
+  
+  .card .price{
+      transition: 0.5s;
+      position: relative;
+      bottom: 41px;
+      left: 2px;
+      /* background-color: black;
+      opacity: 0.8; */
+      background-image: linear-gradient(to right,black,transparent);
+      padding: 5px;
+      color: white;
+      font-size: larger;
+      font-weight: 600;
+      text-align: left;
+      border-radius: 0 0 10px 10px;
+  }
+  
+  
+  .card .info{
+      position: relative;
+      margin-top: 10px;
+      bottom: 41px;
+      color: white;
+      text-align: center;
+  }
+  
+  
+  .search1 {
+    width:100%;
+    position: relative;
+    display: flex;
+  }
+  
+  .searchTerm {
+    width: 890px;
+    border: 3px solid #ffc107;
+    border-right: none;
+    padding: 5px;
+    height: 36px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9DBFAF;
+  }
+  
+  .searchTerm:focus{
+    color: #384e78;
+  }
+  
+  .searchButton {
+    width: 40px;
+    height: 36px;
+    border: 1px solid #ffc107;
+    background: #ffc107;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  
+  i:hover{
+    cursor: pointer;
+  }
+  .border-none{
+    background: none;
+    border:none;
+  }
+  
+  
+    

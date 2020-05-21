@@ -1,0 +1,500 @@
+<div id="i1" style="background-color: whitesmoke;">
+    <div id="i1">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="4000">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="assets/images/img1.jpg" alt="slide1">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="assets/images/img2.jpg" alt="slide8">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="assets/images/img3.jpg" alt="slide8">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="assets/images/img4.jpg" alt="slide8">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="assets/images/img5.jpg" alt="slide8">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" style="font-size: 50px;" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div><br />
+
+    <div class="text-left">
+        <h2 class="text-center" style="color:#34465d; padding-left: 20px;"><b>Deals of the Day</b></h2>
+        <hr><br />
+    </div>
+
+    <div id="carouselControls" class="carousel slide" data-ride="carousel" data-interval="false">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="wrapper" (click)="subCategory('Laptop')">
+                        <img src="assets/images/deal1.jpg">
+                        <div class="container">
+                            <div class="details">
+                                <h2>Laptos</h2>
+                                <p>Starting from Rs.30,000<br /><b class="text-danger">15% OFF</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper" (click)="subCategory('Furniture')">
+                        <img src="assets/images/dining1.jpg">
+                        <div class="container">
+                            <div class="details">
+                                <h2>Dining Table</h2>
+                                <p>Strating from Rs.27,000<br /><b class="text-danger">7% OFF</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper" (click)="subCategory('Laptop')">
+                        <img src="assets/images/deal4.jpg">
+                        <div class="container">
+                            <div class="details">
+                                <h2>Pendrives</h2>
+                                <p>Starts from Rs.499<br /><b class="text-danger">1% OFF</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper" (click)="subCategory('Cameras')">
+                        <img src="assets/images/deal5.jpg">
+                        <div class="container">
+                            <div class="details">
+                                <h2>Cameras</h2>
+                                <p>Starting From Rs.14,000<br /><b class="text-danger">11% OFF</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper" (click)="subCategory('Laptop')">
+                        <img src="assets/images/deal11.jpg">
+                        <div class="container">
+                            <div class="details">
+                                <h2>Headphones</h2>
+                                <p>Starting from Rs.1,000<br /><b class="text-danger">4% OFF</b></p>
+                                <p></p>
+                            </div>
+                            <div class="buy">add_shopping_cart</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row">
+                    <div class="wrapper" (click)="subCategory('Mobiles')">
+                        <img src="assets/images/deal12.jpg">
+                        <div class="container">
+                            <div class="details">
+                                <h2>Power Banks</h2>
+                                <p>Starting from Rs.999<br /><b class="text-danger">2% OFF</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper" (click)="subCategory('Baby Care')">
+                        <img src="assets/images/deal8.jpeg">
+                        <div class="container">
+                            <div class="details">
+                                <h2>Baby Care</h2>
+                                <p>Starting from Rs.1,999<br /><b class="text-danger">8% OFF</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper" (click)="subCategory('Kitchen')">
+                        <img src="assets/images/deal9.jpg">
+                        <div class="container">
+                            <div class="details">
+                                <h2>Refigrators</h2>
+                                <p>Starting from Rs.22,000<br /><b class="text-danger">9% OFF</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper" (click)="subCategory('Kitchen')">
+                        <img src="assets/images/deal10.jpg">
+                        <div class="container">
+                            <div class="details">
+                                <h2>Mixer Set</h2>
+                                <p>Starting from Rs.2,199<br /><b class="text-danger">3% OFF</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper" (click)="subCategory('Accessories')">
+                        <img src="assets/images/deal13.jpg">
+                        <div class="container">
+                            <div class="details">
+                                <h2>Watches</h2>
+                                <p>Starting from Rs.36,999<br /><b class="text-danger">17% OFF</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item" >
+                <div class="row">
+                    <div class="wrapper" (click)="subCategory('Accessories')">
+                        <img src="assets/images/deal7.png">
+                        <div class="container">
+                            <div class="details">
+                                <h2>Trimmer Set</h2>
+                                <p>Starting from Rs.1,098<br /><b class="text-danger">3% OFF</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper" (click)="subCategory('Accessories')">
+                        <img src="assets/images/bags2.jpg">
+                        <div class="container">
+                            <div class="details">
+                                <h2>Hand-Bags</h2>
+                                <p>Starting from Rs.7,899<br /><b class="text-danger">8% OFF</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper" (click)="subCategory('Accessories')">
+                        <img src="assets/images/deal6.jpg">
+                        <div class="container">
+                            <div class="details">
+                                <h2>Deoderents</h2>
+                                <p>Starting from Rs.299<br /><b class="text-danger">1% OFF</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper" (click)="subCategory('Decor')">
+                        <img src="assets/images/curt2.jpg">
+                        <div class="container">
+                            <div class="details">
+                                <h2>Curtains</h2>
+                                <p>Starting from Rs.499<br /><b class="text-danger">5% OFF</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper" (click)="subCategory('Furniture')">
+                        <img src="assets/images/c1.jpg">
+                        <div class="container">
+                            <div class="details">
+                                <h2>Crockery</h2>
+                                <p>Starting from Rs.19,999<br /><b class="text-danger">12% OFF</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <br />
+    <hr><br />
+
+    <div class="text-center">
+        <h2 class="text-center" style="color:#34465d; padding-left: 20px;"><b>New Arrivals</b></h2>
+    </div>
+    <br />
+
+    <div style="padding: 0 50px 0 50px;" id="carouselControl" class="carousel slide" data-ride="carousel"
+        data-interval="false">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="column" (click)="subCategory('Clothes')">
+                        <div class="card col-12">
+                            <img src="assets/images/clothes7.png" alt="Security">
+                            <div class="container" style="height:60px">
+                                <h5 class="text-dark text-center">Upto 20% discount on all top Brands                                   
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column" (click)="subCategory('Clothes')">
+                        <div class="card col-12">
+                            <img src="assets/images/clothes2.jpeg" alt="Security">
+                            <div class="container" style="height:60px">
+                                <h5 class="text-dark text-center">Upto 40% off on Women's collections</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column" (click)="subCategory('Clothes')">
+                        <div class="card col-12">
+                            <img src="assets/images/clothes4.jpg" alt="Security">
+                            <div class="container" style="height:60px">
+                                <h5 class="text-dark text-center">Flat 50% off on Kids Wear</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row">
+                    <div class="column" (click)="subCategory('Clothes')">
+                        <div class="card col-12">
+                            <img src="assets/images/clothes3.jpg" alt="Security">
+                            <div class="container" style="height:60px">
+                                <h5 class="text-dark text-center">Upto 10% discount on Nike Products</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column" (click)="subCategory('Clothes')">
+                        <div class="card col-12">
+                            <img src="assets/images/clothes5.jpg" alt="Security">
+                            <div class="container" style="height:60px">
+                                <h5 class="text-dark text-center">Flat 10% off on Gym Outfit</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column" (click)="subCategory('Clothes')">
+                        <div class="card col-12">
+                            <img src="assets/images/clothes6.jpg" alt="Security">
+                            <div class="container" style="height:60px">
+                                <h5 class="text-dark text-center">Upto 60% off on Ethnic Wear</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselControl" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselControl" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <br />
+
+    <div style="padding: 0 50px 0 50px;" id="carouselControl1" class="carousel slide" data-ride="carousel"
+        data-interval="false">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="column" (click)="subCategory('Footwear')">
+                        <div class="card col-12">
+                            <img src="assets/images/shoes3.jpg" alt="Security">
+                            <div class="container" style="height:60px">
+                                <h5 class="text-dark text-center">Upto 20% discount on Shoes</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column" (click)="subCategory('Decor')">
+                        <div class="card col-12">
+                            <img src="assets/images/fur4.jpg" alt="Security">
+                            <div class="container" style="height:60px">
+                                <h5 class="text-dark text-center">Upto 40% off on Furniture</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column" (click)="subCategory('Accessories')">
+                        <div class="card col-12">
+                            <img src="assets/images/fur2.jpg" alt="Security">
+                            <div class="container" style="height:60px">
+                                <h5 class="text-dark text-center">Flat 50% off on Accessories</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row">
+                    <div class="column" (click)="subCategory('Accessories')">
+                        <div class="card col-12">
+                            <img src="assets/images/hair1.jpg" alt="Security">
+                            <div class="container" style="height:60px">
+                                <h5 class="text-dark text-center">Upto 15% discount on Hair Products</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column" (click)="subCategory('Kitchen')">
+                        <div class="card col-12">
+                            <img src="assets/images/kitchen1.jpg" alt="Security">
+                            <div class="container" style="height:60px">
+                                <h5 class="text-dark text-center">Flat 10% off on Kitchen Appliances</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column" (click)="subCategory('Accessories')">
+                        <div class="card col-12">
+                            <img src="assets/images/bags1.jpg" alt="Security">
+                            <div class="container" style="height:60px">
+                                <h5 class="text-dark text-center">Upto 1000 off on Travel Bags</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselControl1" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" style="font-size:30px;" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselControl1" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" style="font-size:30px;" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <hr>
+    <br />
+
+    <div class="text-center">
+        <h2 class="text-center" style="color:#34465d; padding-left: 20px;"><b>Home Decorations</b></h2>
+    </div>
+    <br />
+    <div id="carouselControl4" class="carousel slide" data-ride="carousel" data-interval="false">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div id="i3" class="row">
+                    <div class="wrapper1" (click)="subCategory('Decor')">
+                        <div class="product-img">
+                            <img src="assets/images/fur9.jpg">
+                        </div>
+                    </div>
+                    <div class="wrapper1" (click)="subCategory('Decor')">
+                        <div class="product-img">
+                            <img src="assets/images/curt1.jpg">
+                        </div>
+                    </div>
+                    <div class="wrapper1" (click)="subCategory('Decor')">
+                        <div class="product-img">
+                            <img src="assets/images/fur1.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div id="i3" class="row">
+                    <div class="wrapper1" (click)="subCategory('Decor')">
+                        <div class="product-img">
+                            <img src="assets/images/fur12.jpg">
+                        </div>
+                    </div>
+                    <div class="wrapper1" (click)="subCategory('Decor')">
+                        <div class="product-img">
+                            <img src="assets/images/fur10.jpg">
+                        </div>
+                    </div>
+                    <div class="wrapper1" (click)="subCategory('Decor')">
+                        <div class="product-img">
+                            <img src="assets/images/fur15.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#carouselControl4" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" style="font-size: 50px;" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselControl4" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <br />
+    <hr>
+
+    <div>
+        <footer class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <h6>CapStore</h6>
+                        <p class="text-justify"><i>An E-Commerce website </i>provides everything you can possibly
+                            imagine, from trending electronics like laptops, tablets, smartphones, and mobile
+                            accessories to in-vogue fashion staples like shoes, clothing and lifestyle accessories; from
+                            modern furniture like sofa sets, dining tables, and wardrobes to appliances that make your
+                            life easy like washing machines, TVs, ACs, mixer grinder juicers and other time-saving
+                            kitchen and small appliances; from home furnishings like cushion covers, mattresses and
+                            bedsheets to toys and musical instruments.</p>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <h6>Categories</h6>
+                        <ul class="footer-links">
+                            <li><a (click)="category('Books')">Books</a></li>
+                            <li><a (click)="category('Electronics')">Electronics</a></li>
+                            <li><a (click)="category('Essentials')">Essentials</a></li>
+                            <li><a (click)="category('Fashion')">Fashion</a></li>
+                            <li><a (click)="category('Home')">Home & Living</a></li>
+                            <li><a (click)="category('Games')">Sports & Games</a></li>
+                            
+                        </ul>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <h6>Quick Links</h6>
+                        <ul class="footer-links">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Contribute</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Sitemap</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-6 col-xs-12">
+                        <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by
+                            <a href="#">CapStore</a>.
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <ul class="social-icons">
+                            <li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+                            <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li><a class="dribbble" href="#"><i class="fab fa-instagram"></i></a></li>
+                            <li><a class="linkedin" href="#"><i class="fab fa-youtube"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div>
+        <div id="mySidenav" class="sidenav">
+
+            <a href="#" id="fb">
+                <div class="sidenav1">
+                    <i class="fas fa-angle-double-left"
+                        style="padding:15px 0 0 0px; font-size: 40px;color:#00B4CC;"></i>
+                    <h4>O</h4>
+                    <h4>F</h4>
+                    <h4>F</h4>
+                    <h4>E</h4>
+                    <h4>R</h4>
+                    <h4>S</h4>
+                </div>
+
+                <div>
+                    <div class="container" style="height:200px; width: 300px; padding:20px 0 0 0;">
+                        <p class="text-left">Avail Flat</p>
+                        <h1 style="margin-top: -20px;"><b>{{500 | currency:'INR': 'symbol' : '1.0-0'}}
+                                OFF</b></h1>
+                        <h3><b>On New Arrivals</b></h3>
+                        <p>Coupon code:<b>WELCOME500</b> </p>
+                        <p>*Applicable on your First order</p>
+                        <img src="assets/images/Cart.png"
+                            style="width: 150px; height:150px; margin: -180px -50px 0 220px;">
+                        <hr>
+                        <p style="margin-top: -10px;">Grab the offer before it ends!</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>

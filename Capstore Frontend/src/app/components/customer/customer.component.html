@@ -1,0 +1,205 @@
+<div class="modal fade bd-example-modal-lg" *ngIf="flag1" id="addToCart">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Items in your Cart</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body" *ngIf="cart">
+        <table class="table">
+          <tbody>
+            <tr *ngFor="let item of cart;let i=index">
+              <th scope="row">{{i+1}}</th>
+              <td class="w-25">
+                <img src="/assets/images/{{item.product.productImage}}" alt="car-brand" width="40%">
+              </td>
+              <td>
+                <i class="fa fa-minus" aria-hidden="true" (click)="decreaseCount(i)"></i>
+                <span class="border px-1 mx-2">{{item.quantity}}</span>
+
+                <button class="border-none" (click)="increaseCount(i)" aria-hidden="true"
+                  [disabled]="item.quantity===item.product.noOfProducts"><i class="fa fa-plus text-primary">
+                  </i></button>
+              </td>
+              <td>
+                <div>
+                  {{item.product.productName}}
+                </div>
+                <div class="text-success font-weight-bold" *ngIf="item.product.noOfProducts>=10">
+                  In Stock
+                </div>
+                <div class="text-danger font-weight-bold" *ngIf="item.product.noOfProducts===0"> Out Of Stock</div>
+                <div>
+                  <span class="text-primary font-weight-bold"> Sold By : </span>{{item.product.merchant.name}}
+                </div>
+              </td>
+              <td>
+                <div class="font-weight-bold">
+                  <i class="fa fa-inr" aria-hidden="true"></i>
+                  {{item.product.productPrice}}
+                </div>
+                <button class="btn btn-danger mt-3" (click)="removeProductFromCart(i)">Remove</button>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+        <div *ngIf="cart.length===0">
+          <img src="assets/images/emptyCart.png" />
+          <h5 class="text-danger">Your Cart Is Empty</h5>
+        </div>
+
+      </div>
+
+
+      <div class="modal-footer d-flex">
+        <h5 class="text-primary">Total Amount : </h5>
+        <i class="fa fa-inr ml-3" aria-hidden="true"></i>
+        <h5 class="mr-4">{{totalAmount}}</h5>
+        <button class="btn btn-success mx-5" [disabled]="cart.length===0" (click)="checkOut()"
+          data-dismiss="modal">Check-Out</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid" style="overflow: hidden;">
+  <div class="row">
+    <div class="col-lg-12 col-sm-12 col-md-12" style="background-color:#384e78;">
+      <h2 style="font-size: 40px; margin-top: 10px;" (click)="navigate()"><b>&nbsp;&nbsp;CAPSTORE</b></h2>
+      <div class="search" style="margin-top: -50px; margin-left: 250px;">
+        <div class="search1">
+          <input type="text" class="searchTerm" placeholder="What are you looking for?" [(ngModel)]="searchText">
+          <button (click)="searchProducts()" class="searchButton">
+            <i class="fa fa-search"></i>
+          </button>
+          <div *ngIf="!flag" class="dropdown" style="margin-left: 50px;">
+            <a class="btn btn-warning text-dark" (click)="login()">Sign In <i class='fas fa-sign-in-alt'></i></a>
+          </div>
+          <div *ngIf="flag" class="btn-group" style="margin-left: 40px;">
+            <button class="text-dark btn btn-warning" data-toggle="dropdown" style="border-radius: 5px 5px 5px 5px;">My
+              Account <i class="fas fa-user"></i></button>
+            <div class="dropdown-menu" style="margin-top: 2px;">
+              <a class="dropdown-item" (click)="myOrders()">My Orders</a>
+              <a class="dropdown-item" (click)="myWishList()">My Wishlist</a>
+              <a class="dropdown-item" (click)="logout()">Logout</a>
+            </div>
+          </div>
+          <div *ngIf="!flag" class="dropdown" style="margin-left: 35px;">
+            <a class="btn btn-warning text-dark" (click)="signUp()">Sign Up <i class="fas fa-user-plus"></i></a>
+          </div>
+          <div *ngIf="flag" class="dropdown" style="margin-left: 30px;">
+            <a class="btn btn-warning text-dark" data-toggle="modal" data-target="#addToCart" (click)="myCart()">My Cart
+              <i class="fa fa-shopping-cart"></i></a>
+          </div>
+        </div>
+
+      </div>
+      <br />
+      <div class="row" style="text-align:center;margin-top: -15px; padding-left: 400px; background-color:none">
+        <div class="btn-group" style="font-size: 15px; padding: 10px 10px 10px 15px; ">
+          <a class="dropdown-toggle text-light" data-toggle="dropdown">Home & Living</a>
+          <div class="dropdown-menu" style="margin-top: 2px;">
+            <a class="dropdown-item" (click)="subCategory('Furniture')">Furniture</a>
+            <a class="dropdown-item" (click)="subCategory('Kitchen')">Kitchen Appliances</a>
+            <a class="dropdown-item" (click)="subCategory('Decor')">Decors</a>
+            <a class="dropdown-item" (click)="subCategory('Lights')">Lights & Lamps</a>
+          </div>
+        </div>
+        <div class="btn-group" style="font-size: 15px; padding: 10px 10px 10px 15px;">
+          <a class="dropdown-toggle text-light" data-toggle="dropdown">Sports & Games</a>
+          <div class="dropdown-menu" style="margin-top: 2px;">
+            <a class="dropdown-item" (click)="subCategory('Electronic Games')">Electronic Games</a>
+            <a class="dropdown-item" (click)="subCategory('Board Games')">Board Games</a>
+            <a class="dropdown-item" (click)="subCategory('Card Games')">Card Games</a>
+          </div>
+        </div>
+        <div class="btn-group" style="font-size: 15px; padding: 10px 10px 10px 15px;">
+          <a class="dropdown-toggle text-light" data-toggle="dropdown">Electronics</a>
+          <div class="dropdown-menu" style="margin-top: 2px;">
+            <a class="dropdown-item" (click)="subCategory('Mobiles')">Mobiles</a>
+            <a class="dropdown-item" (click)="subCategory('Laptop')">Laptops</a>
+            <a class="dropdown-item" (click)="subCategory('Tv')">TV's</a>
+            <a class="dropdown-item" (click)="subCategory('Cameras')">Cameras</a>
+          </div>
+        </div>
+        <div class="btn-group" style="font-size: 15px; padding: 10px 10px 10px 15px;">
+          <a class="dropdown-toggle text-light" data-toggle="dropdown">Fashion</a>
+          <div class="dropdown-menu" style="margin-top: 2px;">
+            <a class="dropdown-item" (click)="subCategory('Clothes')">Clothes</a>
+            <a class="dropdown-item" (click)="subCategory('Accessories')">Accessories</a>
+            <a class="dropdown-item" (click)="subCategory('Footwear')">FootWear</a>
+          </div>
+        </div>
+        <div class="btn-group" style="font-size: 15px; padding: 10px 10px 10px 15px;">
+          <a class="dropdown-toggle text-light" data-toggle="dropdown">Books</a>
+          <div class="dropdown-menu" style="margin-top: 2px;">
+            <a class="dropdown-item" (click)="subCategory('Fiction')">Fiction</a>
+            <a class="dropdown-item" (click)="subCategory('General Knowledge')">GK</a>
+            <a class="dropdown-item" (click)="subCategory('Classics')">Classics</a>
+            <a class="dropdown-item" (click)="subCategory('Self help')">Defence</a>
+          </div>
+        </div>
+        <div class="btn-group" style="font-size: 15px; padding: 10px 10px 10px 15px;">
+          <a class="dropdown-toggle text-light" data-toggle="dropdown">Essentials</a>
+          <div class="dropdown-menu" style="margin-top: 2px;">
+            <a class="dropdown-item" (click)="subCategory('Baby Care')">Baby Care</a>
+            <a class="dropdown-item" (click)="subCategory('SkinCare')">Skin Care</a>
+            <a class="dropdown-item" (click)="subCategory('HairCare')">Hair Care</a>
+            <a class="dropdown-item" (click)="subCategory('Masks')">Masks</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="searchText==''" class="row">
+    <div class="col-lg-12 col-md-12" style="margin-left:-15px;">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div *ngIf="searchText!=''">
+    <div id="i1" style="background-color: whitesmoke;">
+      <div class="row">
+        <div class="col-lg-3" *ngFor="let obj of product" style="padding: 20px;">
+          <div class="card" (click)="gotoProduct(obj.productId)">
+            <div class="image">
+              <img src="/assets/images/{{obj.productImage}}">
+              <div class="buttons">
+                <button *ngIf="(wishLists |wishList:obj.productId)" class="btn btn-dark activeButton"
+                  (click)="removeFromWishList(obj.productId)"><i class="fa fa-heart"></i></button>
+                <button *ngIf="!(wishLists |wishList:obj.productId)" class="btn btn-dark inActiveButton"
+                  (click)="addToWishList(obj.productId)"><i class="fa fa-heart"></i></button><br>
+                <button class="btn btn-dark"><i class="fa fa-shopping-cart"></i></button>
+              </div>
+            </div>
+            <div class="price">
+              &#8377;&nbsp;{{obj.productPrice}} /-
+            </div>
+            <div class="info">
+              <h6>{{obj.productName}}</h6>
+              <h3>{{obj.productBrand}}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="one">
+        <button *ngIf="limit1>0 " (click)=new()>Previous</button>
+      </div>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <div class="two">
+        <button *ngIf="limt2 < product.length" (click)=old()>Next</button>
+      </div>
+    </div>
+  </div>
+</div>
